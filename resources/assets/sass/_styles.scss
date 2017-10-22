@@ -1,0 +1,16 @@
+html {
+  height: 100vh;
+  background-color: $body-background;
+
+  #app {
+
+  }
+}
+
+.is-muted {
+  color: lightgrey !important;
+}
+a.is-muted:hover {
+
+  color: grey !important;
+}

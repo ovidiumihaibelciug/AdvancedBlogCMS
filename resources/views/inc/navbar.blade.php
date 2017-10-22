@@ -10,18 +10,22 @@
         </div>
 
         <div class="navbar-end">
-            <div class="navbar-item is-hoverable has-dropdown">
-                <a href="#" class="navbar-link">Ovi </a>
+            @if( !Auth::guest())
+                <div class="navbar-item is-hoverable has-dropdown">
+                    <a href="#" class="navbar-link">Ovi </a>
 
-                <div class="navbar-dropdown">
-                    <a href="#" class="navbar-item">Profile</a>
-                    <a href="#" class="navbar-item">Notifications</a>
-                    <a href="#" class="navbar-item">Setting</a>
-                    <hr class="navbar-divider">
-                    <a href="#" class="navbar-item">Log out</a>
+                    <div class="navbar-dropdown">
+                        <a href="#" class="navbar-item">Profile</a>
+                        <a href="#" class="navbar-item">Notifications</a>
+                        <a href="#" class="navbar-item">Setting</a>
+                        <hr class="navbar-divider">
+                        <a href="#" class="navbar-item">Log out</a>
+                    </div>
                 </div>
-
-            </div>
+            @else
+                <a href="{{ route('login') }}" class="navbar-item is-tab {{ Request::is('login') ? 'is-active' : '' }}">Log in</a>
+                <a href="{{ route('register') }}" class="navbar-item is-tab {{ Request::is('register') ? 'is-active' : '' }}">Join the community</a>
+            @endif
 
         </div>
     </div>

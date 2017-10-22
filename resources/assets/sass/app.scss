@@ -13,7 +13,7 @@
 @import "variables";
 
 //Buefy
-@import "~buefy/src/scss/buefy";
+@import "node_modules/buefy/src/scss/buefy";
 
 // Margins
 @import "helpers";
@@ -22,7 +22,7 @@
 @import "overrides";
 
 //Main style
-@import "styles"
+@import "styles";
 
 
 

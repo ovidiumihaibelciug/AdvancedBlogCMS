@@ -1,69 +1,51 @@
 @extends('layouts.app')
 
 @section('content')
-{{--<div class="container">--}}
-    {{--<div class="row">--}}
-        {{--<div class="col-md-8 col-md-offset-2">--}}
-            {{--<div class="panel panel-default">--}}
-                {{--<div class="panel-heading">Login</div>--}}
 
-                {{--<div class="panel-body">--}}
-                    {{--<form class="form-horizontal" method="POST" action="{{ route('login') }}">--}}
-                        {{--{{ csrf_field() }}--}}
+    <div id="app">
 
-                        {{--<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">--}}
-                            {{--<label for="email" class="col-md-4 control-label">E-Mail Address</label>--}}
+        <div class="columns m-t-75">
+            <div class="column is-one-third is-offset-one-third">
+                <div class="card">
+                    <div class="card-header-title">
+                        <h1 class="title" style="font-weight: 100">Log in</h1>
+                    </div>
 
-                            {{--<div class="col-md-6">--}}
-                                {{--<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>--}}
+                    <div class="card-content">
+                        <form action="{{ route('login') }}" method="POST">
+                            {{ csrf_field() }}
+                            <div class="field">
+                                <label for="email" class="label">Email Adress</label>
+                                <div class="control">
+                                    <input type="email" class="input {{ $errors->has('email') ? 'is-danger' : '' }}" name="email" id="email" placeholder="name@example.com" value="{{ old('email') }}" required>
+                                </div>
+                                @if ($errors->has('email'))
+                                    <p class="is-danger help">{{ $errors->first('email') }}</p>
+                                @endif
+                            </div>
 
-                                {{--@if ($errors->has('email'))--}}
-                                    {{--<span class="help-block">--}}
-                                        {{--<strong>{{ $errors->first('email') }}</strong>--}}
-                                    {{--</span>--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+                            <div class="field">
 
-                        {{--<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">--}}
-                            {{--<label for="password" class="col-md-4 control-label">Password</label>--}}
+                                <label for="password" class="label">Password</label>
+                                <div class="control">
+                                    <input type="password" class="input {{ $errors->has('email') ? 'is-danger' : '' }}" name="password" id="password" required>
+                                </div>
+                                @if ($errors->has('password'))
+                                    <p class="is-danger help">{{ $errors->first('password') }}</p>
+                                @endif
+                            </div>
 
-                            {{--<div class="col-md-6">--}}
-                                {{--<input id="password" type="password" class="form-control" name="password" required>--}}
+                            <b-checkbox class="p-t-10 p-b-20" name="remember">Remember me</b-checkbox>
 
-                                {{--@if ($errors->has('password'))--}}
-                                    {{--<span class="help-block">--}}
-                                        {{--<strong>{{ $errors->first('password') }}</strong>--}}
-                                    {{--</span>--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+                            <button class="button is-success is-outlined is-fullwidth">Log in</button>
 
-                        {{--<div class="form-group">--}}
-                            {{--<div class="col-md-6 col-md-offset-4">--}}
-                                {{--<div class="checkbox">--}}
-                                    {{--<label>--}}
-                                        {{--<input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me--}}
-                                    {{--</label>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+                        </form>
+                    </div> <!-- End Card Content -->
+                </div><!-- END CARD -->
+                <h5 class="has-text-centered m-t-10"><a href="{{ route('password.request') }}" class="is-muted">Forgot Your Password?</a></h5>
+            </div> <!-- END COLUMN -->
+        </div> <!-- END ROW -->
 
-                        {{--<div class="form-group">--}}
-                            {{--<div class="col-md-8 col-md-offset-4">--}}
-                                {{--<button type="submit" class="btn btn-primary">--}}
-                                    {{--Login--}}
-                                {{--</button>--}}
+    </div> <!-- END APP -->
 
-                                {{--<a class="btn btn-link" href="{{ route('password.request') }}">--}}
-                                    {{--Forgot Your Password?--}}
-                                {{--</a>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</form>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-{{--</div>--}}
-{{--@endsection--}}
+@endsection

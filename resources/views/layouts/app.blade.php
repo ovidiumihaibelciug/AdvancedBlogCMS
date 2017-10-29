@@ -1,4 +1,6 @@
 @include('inc.head')
-    @include('inc.navbar')
-    @yield('content')
+    <div id="app">
+        @include('inc.navbar')
+        @yield('content')
+    </div>
 @include('inc.footer')

@@ -1,0 +1,18 @@
+.sidemenu {
+  position: fixed;
+  background-color: white;
+  max-width: 200px;
+  height: 100vh;
+  z-index:0;
+}
+
+.management-area {
+  position: absolute;
+  top: 4.5em;
+  left: 200px;
+  right: 0;
+}
+
+.flex-container {
+  padding: 10px 25px;
+}

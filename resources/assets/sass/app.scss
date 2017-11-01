@@ -6,14 +6,15 @@
 //Font Awesome
 @import "~font-awesome/scss/font-awesome";
 
-// Bulma
-@import "~bulma/bulma";
 
 // Variables
 @import "variables";
 
+//Bulma
+@import "~bulma";
+
 //Buefy
-@import "node_modules/buefy/src/scss/buefy";
+@import "~buefy/src/scss/buefy";
 
 // Margins
 @import "helpers";

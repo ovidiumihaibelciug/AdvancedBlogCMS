@@ -9,7 +9,7 @@
            </div>
 
            <div class="column">
-               <a href="#" class="button is-success is-outlined is-pulled-right "><span class="icon"><i class="fa fa-user-plus"></i></span>&nbsp; Create new user</a>
+               <a href="{{ route('users.create') }}" class="button is-success is-outlined is-pulled-right "><span class="icon"><i class="fa fa-user-plus"></i></span>&nbsp; Create new user</a>
            </div>
        </div>
        <hr>

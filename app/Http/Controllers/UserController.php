@@ -93,7 +93,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -115,6 +115,33 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:users,email,'.$id //unique but ignore the current id
+        ]);
+        
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        if ($request->password_option == 'auto') {
+            $length = 10;
+            $keyspace = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
+            $str = '';
+            $max = mb_strlen($keyspace, '8bit') - 1;
+            for ($i = 0; $i < $length; ++$i) {
+                $str .= $keyspace[random_int(0, $max)];
+            }
+            $user->password = Hash::make($str);
+          } elseif ($request->password_option == 'manual') {
+            $user->password = Hash::make($request->password);
+          }
+        if ($user->save()) {
+            return redirect()->route('users.show', $id);
+        } else {
+            Session::flash('error', 'There was a problem saving the updated user info to the database, Please try again!');
+            return redirect()->route('users.edit', $id);
+        }
     }
 
     /**

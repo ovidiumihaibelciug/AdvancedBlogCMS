@@ -4,5 +4,4 @@
     <div id="app" class="management-area">
         @yield('content')
     </div>
-
 @include('inc.footer_manage')

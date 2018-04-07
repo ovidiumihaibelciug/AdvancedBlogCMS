@@ -3,6 +3,7 @@
 <!-- Scripts -->
 <script src="{{ asset('/js/app.js') }}"></script>
 <script>
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     document.addEventListener('DOMContentLoaded', function () {
 
         // Get all "navbar-burger" elements

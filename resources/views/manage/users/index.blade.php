@@ -26,19 +26,44 @@
             </thead>
             <tbody>
                 @foreach ($users as $user)
-                <tr>
-                    <th>{{ $user->id }}</th>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->created_at->diffforhumans() }}</td>
-                    <td>
-                        <a href="users/{{ $user->id }}/edit" class="button is-warning is-outlined"><span class="icon"><i class="fa fa-cog"></i></span></a>
-                        <a class="button is-warning is-danger"><span class="icon"><i class="fa fa-trash"></i></span></a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>{{ $user->id }}</td>
+                        <td><a href="{{route('users.show', $user->id)}}">{{ $user->name }}</a></td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->created_at->diffforhumans() }}</td>
+                        <td>
+                            <a href="users/{{ $user->id }}/edit" class="button is-warning is-outlined"><span class="icon"><i class="fa fa-cog"></i></span></a>
+                            <a class="button is-warning is-danger" data-id="{{$user->id}}" @click="confirm"><span class="icon" data-id="{{$user->id}}"><i class="fa fa-trash" data-id="{{$user->id}}"></i></span></a>
+                        </td>                     
+                    </tr>
                  @endforeach
             </tbody>
         </table>
         {{ $users->links() }}
    </div>
+@endsection
+
+@section('scripts')
+    <script>
+        var app  = new Vue({
+            el: '#app',
+            methods: {
+                confirm(e) {
+                    let userId = e.target.dataset.id;   
+                    this.$dialog.confirm({
+                        message: "This user will be deleted. Continue on ths task?",
+                        onConfirm: () => {                              
+                            axios.delete('/manage/users/'+ userId).then(() => {
+                                this.$toast.open('User deleted');
+                                location.reload();
+                            }).catch(err => {
+                                console.log(err);
+                                this.$toast.open('There was a problem. Please Try again!');                                                               
+                            })
+                        }
+                    })
+                },
+            }
+        });
+    </script>
 @endsection

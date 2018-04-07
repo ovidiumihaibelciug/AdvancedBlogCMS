@@ -4,7 +4,7 @@
     <script src="{{ asset('/js/app.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-
+            axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             // Get all "navbar-burger" elements
             var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 

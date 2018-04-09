@@ -11,7 +11,7 @@
         </p>
         <ul class="menu-list">
             <li><a href="/manage/users" class="{{ Request::is('manage/users') ? 'is-active' : '' }}">Manage Users</a></li>
-            <li><a>Roles &amp; Permissions</a></li>
+            <li><a href="{{route('permissions.index')}}" class="{{ Request::is('manage/permissions') ? 'is-active' : '' }}">Roles &amp; Permissions</a></li>
         </ul>
     </aside>
 </div>
